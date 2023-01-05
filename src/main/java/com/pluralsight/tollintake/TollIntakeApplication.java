@@ -16,13 +16,13 @@ public class TollIntakeApplication {
 	}
 
 	@Bean
-	public Consumer<FastPassToll> receiveTollChargesSlow(){
+	public Consumer<FastPassToll> receiveTollCharges(){
 		return value -> {
 			System.out.println("received toll charge (slow) " + value.getFastPassId() + " at time: " + Instant.now().toString());
 		};
 	}
 
-	@Bean
+	//@Bean
 	public Consumer<FastPassToll> receiveTollChargesFast(){
 		return value -> {
 			System.out.println("received toll charge (fast) " + value.getFastPassId() + " at time: " + Instant.now().toString());
