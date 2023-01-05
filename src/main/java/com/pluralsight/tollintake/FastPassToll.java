@@ -2,9 +2,10 @@ package com.pluralsight.tollintake;
 
 public class FastPassToll {
 
-    String fastPassId;
-    String stationId;
-    Float amountPaid;
+    private String fastPassId;
+    private String stationId;
+    private Float amountPaid;
+    private String status;
 
     public FastPassToll(){}
 
@@ -12,6 +13,14 @@ public class FastPassToll {
         this.fastPassId = fastPassId;
         this.stationId = stationId;
         this.amountPaid = amountPaid;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public Float getAmountPaid() {

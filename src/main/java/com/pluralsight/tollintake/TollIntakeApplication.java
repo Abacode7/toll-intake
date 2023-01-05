@@ -2,6 +2,7 @@ package com.pluralsight.tollintake;
 
 import java.time.Instant;
 import java.util.function.Consumer;
+import java.util.function.Function;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -14,10 +15,19 @@ public class TollIntakeApplication {
 		SpringApplication.run(TollIntakeApplication.class, args);
 	}
 
-	@Bean
+	//@Bean
 	public Consumer<FastPassToll> receiveTollCharges(){
 		return value -> {
-			System.out.println("received toll charge " + value.fastPassId + " at time: " + Instant.now().toString());
+			System.out.println("received toll charge " + value.getFastPassId() + " at time: " + Instant.now().toString());
+		};
+	}
+
+	@Bean
+	public Function<FastPassToll, FastPassToll> processTollCharges(){
+		return value -> {
+			System.out.println("Processing message");
+			value.setStatus("processed");
+			return value;
 		};
 	}
 }
