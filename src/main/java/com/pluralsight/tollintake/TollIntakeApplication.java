@@ -15,14 +15,21 @@ public class TollIntakeApplication {
 		SpringApplication.run(TollIntakeApplication.class, args);
 	}
 
-	//@Bean
-	public Consumer<FastPassToll> receiveTollCharges(){
+	@Bean
+	public Consumer<FastPassToll> receiveTollChargesSlow(){
 		return value -> {
-			System.out.println("received toll charge " + value.getFastPassId() + " at time: " + Instant.now().toString());
+			System.out.println("received toll charge (slow) " + value.getFastPassId() + " at time: " + Instant.now().toString());
 		};
 	}
 
 	@Bean
+	public Consumer<FastPassToll> receiveTollChargesFast(){
+		return value -> {
+			System.out.println("received toll charge (fast) " + value.getFastPassId() + " at time: " + Instant.now().toString());
+		};
+	}
+
+	//@Bean
 	public Function<FastPassToll, FastPassToll> processTollCharges(){
 		return value -> {
 			System.out.println("Processing message");
